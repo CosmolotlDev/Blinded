@@ -11,7 +11,7 @@ using TMPro;
 public class TmproTextLabelBehavior : MonoBehaviour
 {
     private TMP_Text label;
-    public UnityEvent startEvent;
+    public UnityEvent startEvent, enableEvent, disableEvent;
     
     private void Start()
     {
@@ -33,5 +33,17 @@ public class TmproTextLabelBehavior : MonoBehaviour
     public void UpdateLabel(Vector3Data obj)
     {
         label.text = string.Format("({0},{1},{2})", obj.value.x.ToString("00.0"), obj.value.y.ToString("00.0"), obj.value.z.ToString("00.0"));
+    }
+    public void UpdateLabel(StringData obj)
+    {
+        label.text = obj.value;
+    }
+    private void OnEnable()
+    {
+        enableEvent.Invoke();
+    }
+    private void OnDisable()
+    {
+        disableEvent.Invoke();
     }
 }

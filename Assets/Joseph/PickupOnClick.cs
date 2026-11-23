@@ -55,7 +55,7 @@ public class PickupOnClick : MonoBehaviour
 
     private void dropObject()
     {
-        pickedUpObject.transform.SetParent(null);
+        pickedUpObject.transform.SetParent(null);//TODO: PRESERVE HEIRARCHY OF ORIGINAL OBJECT
         pickedUpObject.GetComponent<Rigidbody>().isKinematic = false;
         pickedUpObject = null;
         holdingObject = false;
