@@ -14,6 +14,9 @@ public class SimplePOVCharacterController : MonoBehaviour
     float mousey;
     private float movementx;
     private float movementz;
+
+    private float pitch = 0f;
+
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -47,9 +50,13 @@ public class SimplePOVCharacterController : MonoBehaviour
 
     void rotateFromInput()
     {
-        
+        // Rotate the player object left and right
         transform.Rotate(Vector3.up * mousex);
-        cameraObject.transform.Rotate(Vector3.left * mousey);
+
+        // Rotate the camera up and down
+        pitch -= mousey;
+        pitch = Mathf.Clamp(pitch, -90f, 90f);
+        cameraObject.transform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
 
     }
     
