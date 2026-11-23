@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class SimplePOVCharacterController : MonoBehaviour
@@ -58,6 +59,18 @@ public class SimplePOVCharacterController : MonoBehaviour
         pitch = Mathf.Clamp(pitch, -90f, 90f);
         cameraObject.transform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
 
+    }
+
+    public void lockMouse()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void unlockMouse()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     
 
